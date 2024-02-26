@@ -4,7 +4,7 @@ from account import Account
 from account import Statement
 
 # print(dir(Account))
-pin = '1234'
+
 # instantiation
 # this is when we create objects based on classes
 
@@ -12,7 +12,7 @@ lisa_account = Account(100, 'Lisa', 'Simpson')
 # print(lisa_account)
 for attempts in range(1, 4):
     lisa_pin = lisa_account.get_pin()
-    outcome = lisa_account.verify_pin(attempts)
+    outcome = lisa_account.set_verify_pin(attempts)
     print(outcome)
     if outcome in 'Welcome how can I help?':
         lisa_initial_balance = lisa_account.getbalance()
@@ -36,7 +36,9 @@ for attempts in range(1, 4):
         print(f"Lisa's old last name was {lastname} and her new lastname is {new_last_name}")
         answer = input('Would you like a statement?')
         if answer in 'yes':
-            statement_print = Statement(lisa_deposit, lisa_new_balance)
+            # object instantiation
+            statement_print = Statement(lisa_initial_balance, firstname, new_last_name, lisa_deposit, lisa_new_balance)
+            statement_print.write_report()
             # statement = open('lisastatement.txt', 'w')
             # write_report(statement, firstname, new_last_name, lisa_initial_balance, lisa_deposit, lisa_new_balance)
             print('Please take your statement')

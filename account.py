@@ -3,6 +3,7 @@
 import sys
 from datetime import date
 
+
 # account is the base class / parent
 class Account:
     # public class variable
@@ -31,11 +32,14 @@ class Account:
     # methods about behaviour
     #     all methods - functions defined within a class
     # first argument passed to a method is usually called self
+    # getter - getting the pin
     def get_pin(self):
         self.supplied_pin = input('Enter your pin: ')
         return self.supplied_pin
 
-    def verify_pin(self, attempts):
+    # added method to verify the pin provided
+    # setter - validating the data
+    def set_verify_pin(self, attempts):
         pin = '1234'
         max_num_attempts = 3
         if self.supplied_pin in pin:
@@ -46,6 +50,7 @@ class Account:
         else:
             return 'Your account is now locked. Have a nice day!'
 
+    #  added input into method to take deposit amount
     def deposit(self):
         amount = int(input("Enter amount to be deposited: "))
         self._balance += amount
@@ -92,14 +97,16 @@ class Account:
 
 
 # created a class that inherits the attributes from the account class
-# single inheritance, derived clas
+# single inheritance, derived class
 class Statement(Account):
-    def __init__(self,initial_amount, firstname, lastname, depositamount, newbalance):
+    # constructor includes the inherited attributes from account class
+    # self refers to the instance of the class currently being used
+    def __init__(self,initial_amount, firstname, lastname, deposit_amount, new_balance):
         self.sInitial_amount = initial_amount
         self.sFirstname = firstname
         self.sLastname = lastname
-        self.Depositamount = depositamount
-        self.Newbalance = newbalance
+        self.Deposit_amount = deposit_amount
+        self.New_balance = new_balance
         # super gives access to the parent class methods and attributes within child class (sub base)
         super().__init__(initial_amount, firstname, lastname)
 
@@ -109,6 +116,6 @@ class Statement(Account):
             statement.write(f'Hello {self.sFirstname} {self.sLastname}\n' + ('*' * 50) + '\n')
             statement.write(f'Statement date: {today}\n')
             statement.write(f'Your starting balance was ${self.sInitial_amount}\n')
-            statement.write(f'You deposited ${self.Depositamount}\n')
-            statement.write(f'Your new balance is ${self.Newbalance}')
+            statement.write(f'You deposited ${self.Deposit_amount}\n')
+            statement.write(f'Your new balance is ${self.New_balance}')
             statement.close()

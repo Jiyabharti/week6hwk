@@ -9,16 +9,15 @@ print(f"Are you ready to play? Your choices are R, P, S. First to three wins!")
 while player_wins < 3 and computer_wins < 3:
     # TODO: Prompts the user to enter a value: R,P,S
     # TODO: validate the user input to make sure it is R,S,P
-    # player_input = validate_user()
-    # TODO: Computer generates a random number from the list of numbers provided
-    # computer_outcomes = [0, 1, 2]
-    # computer = str(random.choice(computer_outcomes))
-    # initialised the class for the game from here with the parameters being the values created above
+    # instantiating the class for the user and computer input
     user_start = Userinput()
+    # using method to validate the user input
     player1 = user_start.validate_user()
+    # TODO: Computer generates a random number from the list of numbers provided
+    # using method to get computer choice - object is user_start, method is computer_choice
     computer = user_start.computer_choice()
+    # instantiating the game class using the data attributes returned in the user input class
     game = Gamefunctions(player1, computer)
-
     player_choice = game.player_convert()
     print(f"Player one you have chosen {player_choice}")
     computer_choice = game.computer_convert()
