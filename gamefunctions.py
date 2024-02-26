@@ -1,3 +1,6 @@
+import random
+
+
 def write_report(match_report, player_wins, computer_wins):
     match_report.write('Match Report \n' + ('*' * 50) + '\n')
     match_report.write('Good game! Well played!\n')
@@ -10,21 +13,31 @@ def write_report(match_report, player_wins, computer_wins):
 
 
 # function to validate that the user has entered the correct in
-def validate_user():
-    player1_outcomes = ['R', 'P', 'S']
-    while True:
-        player1 = input('1, 2, 3 GO - Type R or P or S: ').upper()
-        if player1 not in player1_outcomes:
-            print('Please enter a valid value - R, P, S')
-        else:
-            return player1
+class Userinput:
+    def __init__(self):
+        self.player1 = ''
+        self.computer = ''
+
+    def validate_user(self):
+        player1_outcomes = ['R', 'P', 'S']
+        while True:
+            self.player1 = input('1, 2, 3 GO - Type R or P or S: ').upper()
+            if self.player1 not in player1_outcomes:
+                print('Please enter a valid value - R, P, S')
+            else:
+                return self.player1
+
+    def computer_choice(self):
+        computer_outcomes = [0, 1, 2]
+        self.computer = str(random.choice(computer_outcomes))
+        return self.computer
 
 
 class Gamefunctions:
     # creating the attributes to be passed when the class is initialised
-    def __init__(self, player_input, computer_input):
-        self._player_input = player_input
-        self._computer_input = computer_input
+    def __init__(self, player1, computer):
+        self._player_input = player1
+        self._computer_input = computer
 
     def player_convert(self):
         if self._player_input == 'R':

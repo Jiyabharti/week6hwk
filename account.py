@@ -3,32 +3,10 @@
 import sys
 from datetime import date
 
-
-def verify_pin(pin, supplied_pin, attempts, max_num_attempts=3):
-    if supplied_pin in pin:
-        return 'Welcome how can I help?'
-    elif supplied_pin not in pin and attempts < 3:
-        remaining_attempts = max_num_attempts - attempts
-        return f'Your pin is incorrect, you have {remaining_attempts} left.'
-    else:
-        return 'Your account is now locked. Have a nice day!'
-
-
-def write_report(statement, firstname, lastname, initialbalance, depositamount, newbalance):
-    today = date.today()
-    statement.write(f'Hello {firstname} {lastname}\n' + ('*' * 50) + '\n')
-    statement.write(f'Statement date: {today}\n')
-    statement.write(f'Your starting balance was ${initialbalance}\n')
-    statement.write(f'You deposited ${depositamount}\n')
-    statement.write(f'Your new balance is ${newbalance}')
-    statement.close()
-
-
+# account is the base class / parent
 class Account:
     # public class variable
     numCreated = 0
-    pin = '1234'
-
     # special method called the constructor - dunder
     # a constructor method is used to get your object ready to be used
     #  preparatory to work
@@ -56,6 +34,17 @@ class Account:
     def get_pin(self):
         self.supplied_pin = input('Enter your pin: ')
         return self.supplied_pin
+
+    def verify_pin(self, attempts):
+        pin = '1234'
+        max_num_attempts = 3
+        if self.supplied_pin in pin:
+            return 'Welcome how can I help?'
+        elif self.supplied_pin not in pin and attempts < 3:
+            remaining_attempts = max_num_attempts - attempts
+            return f'Your pin is incorrect, you have {remaining_attempts} left.'
+        else:
+            return 'Your account is now locked. Have a nice day!'
 
     def deposit(self):
         amount = int(input("Enter amount to be deposited: "))
@@ -101,3 +90,25 @@ class Account:
         return f"Account\nFirstname: {self.get_firstname()}\nLastname: {self.get_last_name()}"\
                 f"\nBalance: ${self.getbalance()}\n************"
 
+
+# created a class that inherits the attributes from the account class
+# single inheritance, derived clas
+class Statement(Account):
+    def __init__(self,initial_amount, firstname, lastname, depositamount, newbalance):
+        self.sInitial_amount = initial_amount
+        self.sFirstname = firstname
+        self.sLastname = lastname
+        self.Depositamount = depositamount
+        self.Newbalance = newbalance
+        # super gives access to the parent class methods and attributes within child class (sub base)
+        super().__init__(initial_amount, firstname, lastname)
+
+    def write_report(self):
+        with open('lisastatement.txt', 'w') as statement:
+            today = date.today()
+            statement.write(f'Hello {self.sFirstname} {self.sLastname}\n' + ('*' * 50) + '\n')
+            statement.write(f'Statement date: {today}\n')
+            statement.write(f'Your starting balance was ${self.sInitial_amount}\n')
+            statement.write(f'You deposited ${self.Depositamount}\n')
+            statement.write(f'Your new balance is ${self.Newbalance}')
+            statement.close()

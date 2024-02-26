@@ -1,5 +1,5 @@
 import random
-from gamefunctions import write_report, validate_user, Gamefunctions
+from gamefunctions import write_report, Userinput, Gamefunctions
 
 player_wins = 0
 computer_wins = 0
@@ -9,12 +9,16 @@ print(f"Are you ready to play? Your choices are R, P, S. First to three wins!")
 while player_wins < 3 and computer_wins < 3:
     # TODO: Prompts the user to enter a value: R,P,S
     # TODO: validate the user input to make sure it is R,S,P
-    player_input = validate_user()
+    # player_input = validate_user()
     # TODO: Computer generates a random number from the list of numbers provided
-    computer_outcomes = [0, 1, 2]
-    computer = str(random.choice(computer_outcomes))
+    # computer_outcomes = [0, 1, 2]
+    # computer = str(random.choice(computer_outcomes))
     # initialised the class for the game from here with the parameters being the values created above
-    game = Gamefunctions(player_input, computer)
+    user_start = Userinput()
+    player1 = user_start.validate_user()
+    computer = user_start.computer_choice()
+    game = Gamefunctions(player1, computer)
+
     player_choice = game.player_convert()
     print(f"Player one you have chosen {player_choice}")
     computer_choice = game.computer_convert()

@@ -1,6 +1,0 @@
-Match Report 
-**************************************************
-Good game! Well played!
-Total Wins
-Player 1: 3 
-Computer: 2
