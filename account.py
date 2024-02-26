@@ -19,7 +19,7 @@ class Account:
     def __init__(self, initial_amount, firstname, lastname):
         # _balance is an attribute - piece of data
         # single underscore is semi private
-        self.supplied_pin = ''
+        self._supplied_pin = ''
         self._balance = initial_amount
         self.first_name = firstname
         # dunder on a field means private keep out
@@ -34,17 +34,17 @@ class Account:
     # first argument passed to a method is usually called self
     # getter - getting the pin
     def get_pin(self):
-        self.supplied_pin = input('Enter your pin: ')
-        return self.supplied_pin
+        self._supplied_pin = input('Enter your pin: ')
+        return self._supplied_pin
 
     # added method to verify the pin provided
     # setter - validating the data
     def set_verify_pin(self, attempts):
         pin = '1234'
         max_num_attempts = 3
-        if self.supplied_pin in pin:
+        if self._supplied_pin in pin:
             return 'Welcome how can I help?'
-        elif self.supplied_pin not in pin and attempts < 3:
+        elif self._supplied_pin not in pin and attempts < 3:
             remaining_attempts = max_num_attempts - attempts
             return f'Your pin is incorrect, you have {remaining_attempts} left.'
         else:

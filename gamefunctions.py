@@ -36,30 +36,30 @@ class Userinput:
 class Gamefunctions:
     # creating the attributes to be passed when the class is initialised
     def __init__(self, player1, computer):
-        self._player_input = player1
-        self._computer_input = computer
+        self.player_input = player1
+        self.computer_input = computer
 
     def player_convert(self):
-        if self._player_input == 'R':
-            self._player_input = 'Rock'
+        if self.player_input == 'R':
+            self.player_input = 'Rock'
 
-        elif self._player_input == 'P':
-            self._player_input = 'Paper'
+        elif self.player_input == 'P':
+            self.player_input = 'Paper'
 
         else:
-            self._player_input = 'Scissors'
-        return self._player_input
+            self.player_input = 'Scissors'
+        return self.player_input
 
     def computer_convert(self):
-        if self._computer_input == '0':
-            self._computer_input = 'Rock'
+        if self.computer_input == '0':
+            self.computer_input = 'Rock'
 
-        elif self._computer_input == '1':
-            self._computer_input = 'Paper'
+        elif self.computer_input == '1':
+            self.computer_input = 'Paper'
 
         else:
-            self._computer_input = 'Scissors'
-        return self._computer_input
+            self.computer_input = 'Scissors'
+        return self.computer_input
 
     def compare_outcomes(self, _player_input, _computer_input):
         winning_combinations = {
@@ -68,11 +68,11 @@ class Gamefunctions:
             'Scissors': 'Paper'
             }
 
-        if self._player_input == self._computer_input:
+        if self.player_input == self.computer_input:
             player_win = 'Next time'
             computer_win = 'Next time'
             return player_win, computer_win
-        elif winning_combinations[self._player_input] == self._computer_input:
+        elif winning_combinations[self.player_input] == self.computer_input:
             player_win = 'Winner'
             computer_win = 'Loser'
             return player_win, computer_win
