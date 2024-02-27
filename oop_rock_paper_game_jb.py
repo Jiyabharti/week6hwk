@@ -4,7 +4,8 @@ import random
 
 # QUESTIONS 4 Victoria
 
-# instances????
+# differences between the big 4
+# poly, inheritance,encapsulation and instantiation
 
 
 
@@ -83,9 +84,13 @@ class Game:
 # Example usage of a dunderscore, so we can run it below
 if __name__ == "__main__":
     game = Game()
-    # Creates an instance of a class
+#     Turning a variable into a method = incapsulation
+# Creates an instance of a class
+#     this is instatiation
     # an instance of a class is also known as an object
     # instance is an object that belongs to that class
+    # instantiation
+    # this is when we create objects based on classes
     game.play()
 #     calls game method on the play class!
 
